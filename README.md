@@ -1,4 +1,4 @@
-##Table of Contents
+<h1>Table of Contents</h1>
 
 <!-- Data Structure Contents -->
 <details open="open">
