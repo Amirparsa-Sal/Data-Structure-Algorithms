@@ -1,3 +1,5 @@
+##Table of Contents
+
 <!-- Data Structure Contents -->
 <details open="open">
   <summary>Data Structures</summary>
