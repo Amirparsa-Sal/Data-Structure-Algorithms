@@ -34,3 +34,11 @@
     <li><p>Graph</p></li>
   </ol>
 </details>
+<hr>
+<h1>Resources</h1>
+<ol>
+  <li> <p><a href="https://www.udemy.com/course/advanced-algorithms-in-java"> Advanced Algorithms (Graph Algorithms) in Java </a> by <i> Holczer Balazs </i> </p> </li>
+  <li> <p><a href="https://www.youtube.com/playlist?list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P"> Graph Theory Playlist </a> by <i> William Fiset </i> </p> </li> 
+  <li> <p><a href="https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu"> Data Structure Playlist </a> by <i> William Fiset </i> </p> </li>
+  <li> <p><a href="https://www.youtube.com/playlist?list=PLDV1Zeh2NRsAsbafOroUBnNV8fhZa7P4u"> Tree Algorithms Playlist </a> by <i> William Fiset </i> </p> </li>
+</ol>
