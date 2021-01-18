@@ -11,11 +11,11 @@ public class DynamicArray<T> implements Iterable<T>{
 	private int size;
 	private T[] arr;
 
-	DynamicArray(){
+	public DynamicArray(){
 		this(4);
 	}
 
-	DynamicArray(int capacity){
+	public DynamicArray(int capacity){
 		this.capacity = capacity;
 		this.size = 0;
 		this.arr = (T[]) new Object[capacity];
@@ -172,7 +172,7 @@ public class DynamicArray<T> implements Iterable<T>{
     	private DynamicArray<T> arr;
     	private int index;
 
-    	ArrayIterator(DynamicArray<T> arr){
+    	public ArrayIterator(DynamicArray<T> arr){
     		this.arr = arr;
     		index = 0;
     	}
