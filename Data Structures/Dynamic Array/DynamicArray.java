@@ -3,8 +3,9 @@ import java.util.ListIterator;
 import java.util.List;
 import java.util.Collection;
 import java.lang.StringBuilder;
+import java.util.Arrays;
 
-public class DynamicArray<T> implements Iterable<T>,List<T>{
+public class DynamicArray<T> implements Iterable<T>{
 
 	private int capacity;
 	private int size;
@@ -20,48 +21,73 @@ public class DynamicArray<T> implements Iterable<T>,List<T>{
 		this.arr = (T[]) new Object[capacity];
 	}
 	
-	@Override public T get(int index){
+	public T get(int index){
 		//Checking bounds
 		if (index<0 || index >= size)
 			throw new ArrayIndexOutOfBoundsException("Index " + index + " out of range!");
 		return arr[index];
 	}
 
-	@Override public int size() {return this.size;}
+	public int size() {return this.size;}
 
-    @Override public boolean isEmpty() {return size == 0;}
+    public boolean isEmpty() {return size == 0;}
 
-    @Override public boolean contains(Object o) {return indexOf(o)!=-1;}
+    public boolean contains(Object o) {return indexOf(o)!=-1;}
 
     @Override public Iterator<T> iterator() {return new ArrayIterator<T>(this);}
 
-    @Override public Object[] toArray() {
-        return new Object[0];
+    public Object[] toArray() {
+    	Object[] arr = new Object[size];
+    	for(int i = 0; i < size; i++)
+    		arr[i] = this.arr[i];
+        return arr;
     }
 
-    @Override public <T1> T1[] toArray(T1[] a) {
-        return null;
-    }
+    public <E> E[] toArray(E[] a) {
+    	//if a has not enough space return new array
+    	if(a.length < size)
+    		return (E[]) Arrays.copyOf(arr, size, a.getClass());
+    	//filling a if a has enough space
+		System.arraycopy(arr,0,a,0,size);
+		if(a.length>size)
+			a[size] = null;
+		return a;
+	}
 
-    @Override public boolean add(T t) {
-    	//Checking if resize is needed. Resize is needed when array is full. each resize doubles the size of the array.
-        if (size == capacity){
-        	if (size == 0)
-        		capacity = 1;
-        	else
-	        	capacity *= 2;
-        	T[] arr = (T[]) new Object[capacity];
-        	for(int i = 0; i < size; i++)
-        		arr[i] = this.arr[i];	
-        	this.arr = arr;
-        }
+    public boolean add(T t) {
+    	//Checking if resize is required. Resize is required when the array is full. each resize doubles the size of the array.
+        if (size == capacity)
+        	addCapacity();
         //Putting object in array
         arr[size] = t;
         size++;
         return true;
     }
 
-    @Override public boolean remove(Object o) {
+    public void add(int index, T element) {
+    	//checking if index is in range
+    	if (index<0 || index>=size)
+    		throw new ArrayIndexOutOfBoundsException("Index " + index + " out of range!");
+    	//Checking if resize is required. Resize is required when the array is full. each resize doubles the size of the array.
+    	if (size==capacity)
+    		addCapacity();
+    	for(int i = size; i > index; i--)
+    		arr[i] = arr[i-1];
+    	arr[index] = element;
+    	size++;
+    }
+
+    private void addCapacity(){
+    	if (size == 0)
+    		capacity = 1;
+    	else
+        	capacity *= 2;
+    	T[] arr = (T[]) new Object[capacity];
+    	System.arraycopy(this.arr,0,arr,0,size);	
+    	this.arr = arr;
+    }
+
+    public boolean remove(Object o) {
         int index = indexOf(o);
         if (index == -1)
         	return false;
@@ -69,31 +95,13 @@ public class DynamicArray<T> implements Iterable<T>,List<T>{
         return true;
     }
 
-    @Override public boolean containsAll(Collection<?> c) {
-        return false;
+    public void clear() {
+    	capacity = 4;
+    	arr = (T[]) new Object[capacity];
+    	size = 0;
     }
 
-    @Override public boolean addAll(Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override public void clear() {
-
-    }
-
-    @Override public T set(int index, T element) {
+    public T set(int index, T element) {
     	if (index<=0 || index>=size)
     		throw new ArrayIndexOutOfBoundsException("Index " + index + " out of range!");
     	T prevElement = arr[index];
@@ -101,12 +109,9 @@ public class DynamicArray<T> implements Iterable<T>,List<T>{
     	return prevElement;
     }
 
-    @Override public void add(int index, T element) {
-
-    }
 
 
-    @Override public T remove(int index) {
+    public T remove(int index) {
     	//Checking bound
     	if (index<0 || index>=size)
     		throw new ArrayIndexOutOfBoundsException("Index " + index + " out of range!");
@@ -130,7 +135,7 @@ public class DynamicArray<T> implements Iterable<T>,List<T>{
         return result;
     }
 
-    @Override public int indexOf(Object o) {
+    public int indexOf(Object o) {
         for(int i = 0; i < size; i++){
         	if (o == null && arr[i]==null)
         		return i;
@@ -140,7 +145,7 @@ public class DynamicArray<T> implements Iterable<T>,List<T>{
     	return -1;
     }
 
-    @Override public int lastIndexOf(Object o) {
+    public int lastIndexOf(Object o) {
     	if (size == 0)
     		return -1;
         for(int i = size-1; i >= 0; i++){
@@ -150,18 +155,6 @@ public class DynamicArray<T> implements Iterable<T>,List<T>{
        			return i;
        }
     	return -1;
-    }
-
-    @Override public ListIterator<T> listIterator() {
-        return null;
-    }
-
-    @Override public ListIterator<T> listIterator(int index) {
-        return null;
-    }
-
-    @Override public List<T> subList(int fromIndex, int toIndex) {
-        return null;
     }
 
     @Override public String toString(){

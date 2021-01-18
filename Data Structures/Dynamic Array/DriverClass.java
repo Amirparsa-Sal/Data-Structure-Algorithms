@@ -13,8 +13,7 @@ public class DriverClass{
 		System.out.println(arr);
 		arr.add(5);
 		System.out.println(arr);
-		for(Integer i : arr)
-			System.out.print(i + " ");
+		arr.add(2,5);
+		System.out.println(arr);
 	}
-
 }
