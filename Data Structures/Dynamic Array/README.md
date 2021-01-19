@@ -17,5 +17,5 @@ Dynamic Array is an variable-size list that allows elements to be added or be re
 
 * In order to `append` or `insert` an element to a full Dynamic Array: we must double the capacity of the array and then add element to it.
 
-* In order to `delete` an element from a Dynamic Array: if after deleting the element, current size of the array is less that or equal to its capacity we must reduce the capacity of the Dynamic Array to capacity/2.
+* In order to `delete` an element from a Dynamic Array: after deleting the element, if current size of the array is less than or equal to capacity/4 we must reduce the capacity of the Dynamic Array to capacity/2.
 
