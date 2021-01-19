@@ -122,6 +122,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 		T key = tail.key;
 		tail  = tail.prev;
 		tail.next = head;
+		head.prev = tail;
 		--size;
 		return key;
 	}
@@ -138,6 +139,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 		T key = head.next.key;
 		head = head.next;
 		head.prev = tail;
+		tail.next = head;
 		--size;
 		return key;
 	}
