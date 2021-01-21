@@ -1,23 +1,24 @@
+package DataStructures.LinkedList;
+
 import java.util.Iterator;
 import java.lang.StringBuilder;
 
-public class CircularLinkedList<T> implements Iterable<T>{
+
+public class DoublyLinkedList<T> implements Iterable<T>{
 
 	private int size;
 	private Node<T> head;
 	private Node<T> tail;
 
-	public CircularLinkedList(){
+	public DoublyLinkedList(){
 		size = 0;
 		head = null;
 		tail = null;
 	}
 
-	public CircularLinkedList(T key){
+	public DoublyLinkedList(T key){
 		this.size = 1;
 		head = tail = new Node<T>(key);
-		head.prev = tail;
-		tail.next = head;
 	}
 
 	public int size(){return size;}
@@ -25,7 +26,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 	public boolean isEmpty(){return size==0;}
 
 	public void addLast(T key){
-		addLast(new Node<T>(tail, key, head));
+		addLast(new Node<T>(tail, key));
 		++size;
 	}
 
@@ -39,7 +40,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 	}
 
 	public void addFirst(T key){
-		addFirst(new Node<T>(tail ,key, head));
+		addFirst(new Node<T>(key, head));
 		++size;
 	}
 
@@ -65,7 +66,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 		}
 		Node<T> trav = head;
 		for (int i = 0; i < index - 1; i++, trav = trav.next);
-		Node<T> newNode = new Node<>(trav , key, trav.next);
+		Node<T> newNode = new Node<>(trav,key,trav.next);
 		trav.next.prev = newNode;
 		trav.next = newNode;
 		++size;	
@@ -121,8 +122,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 		}
 		T key = tail.key;
 		tail  = tail.prev;
-		tail.next = head;
-		head.prev = tail;
+		tail.next = null;
 		--size;
 		return key;
 	}
@@ -138,8 +138,7 @@ public class CircularLinkedList<T> implements Iterable<T>{
 		}
 		T key = head.next.key;
 		head = head.next;
-		head.prev = tail;
-		tail.next = head;
+		head.prev = null;
 		--size;
 		return key;
 	}
@@ -162,8 +161,11 @@ public class CircularLinkedList<T> implements Iterable<T>{
 		StringBuilder sb = new StringBuilder("LinkedList(" + size + ")[");
 		Node<T> trav = head;
 		Node<T> trav_next = head.next;
-		for (int i = 0; i < size - 1; i++, trav = trav.next, trav_next = trav_next.next)
+		while(trav_next!=null){
 			sb.append(trav.key + " <-> ");
+			trav = trav.next;
+			trav_next = trav_next.next;
+		}
 		return sb.append(trav.key + "]").toString();
 	}
 
@@ -214,10 +216,10 @@ public class CircularLinkedList<T> implements Iterable<T>{
     		node = head;
     	}
 
-    	@Override public boolean hasNext() {return index<size;}
+    	@Override public boolean hasNext() {return node!=null;}
 
     	@Override public T next() {
-    		if (index >= size)
+    		if (node == null)
     			throw new RuntimeException("Reached end of the list!");
     		T result = node.key;
     		node = node.next;

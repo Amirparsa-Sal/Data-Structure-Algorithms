@@ -1,21 +1,26 @@
+package DataStructures.LinkedList;
+
 import java.util.Iterator;
 import java.lang.StringBuilder;
 
-public class SinglyLinkedList<T> implements Iterable<T>{
+
+public class CircularLinkedList<T> implements Iterable<T>{
 
 	private int size;
 	private Node<T> head;
 	private Node<T> tail;
 
-	public SinglyLinkedList(){
+	public CircularLinkedList(){
 		size = 0;
 		head = null;
 		tail = null;
 	}
 
-	public SinglyLinkedList(T key){
+	public CircularLinkedList(T key){
 		this.size = 1;
 		head = tail = new Node<T>(key);
+		head.prev = tail;
+		tail.next = head;
 	}
 
 	public int size(){return size;}
@@ -23,7 +28,7 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 	public boolean isEmpty(){return size==0;}
 
 	public void addLast(T key){
-		addLast(new Node<T>(key));
+		addLast(new Node<T>(tail, key, head));
 		++size;
 	}
 
@@ -37,7 +42,7 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 	}
 
 	public void addFirst(T key){
-		addFirst(new Node<T>(key));
+		addFirst(new Node<T>(tail ,key, head));
 		++size;
 	}
 
@@ -63,7 +68,8 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 		}
 		Node<T> trav = head;
 		for (int i = 0; i < index - 1; i++, trav = trav.next);
-		Node<T> newNode = new Node<>(key,trav.next);
+		Node<T> newNode = new Node<>(trav , key, trav.next);
+		trav.next.prev = newNode;
 		trav.next = newNode;
 		++size;	
 	}
@@ -101,6 +107,7 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 		}
 		Node<T> trav = head;
 		for(int i = 0; i < index - 1; i++, trav=trav.next);
+		trav.next.next.prev = trav;
 		trav.next = trav.next.next;
 		--size;
 		return true;
@@ -115,12 +122,10 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 			head = tail = null;
 			return key;
 		}
-		Node<T> trav = head;
-		while(trav.next!=null && trav.next.next!=null)
-			trav = trav.next;
-		T key = trav.next.key;
-		trav.next = null;
-		tail = trav;
+		T key = tail.key;
+		tail  = tail.prev;
+		tail.next = head;
+		head.prev = tail;
 		--size;
 		return key;
 	}
@@ -136,6 +141,8 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 		}
 		T key = head.next.key;
 		head = head.next;
+		head.prev = tail;
+		tail.next = head;
 		--size;
 		return key;
 	}
@@ -158,11 +165,8 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 		StringBuilder sb = new StringBuilder("LinkedList(" + size + ")[");
 		Node<T> trav = head;
 		Node<T> trav_next = head.next;
-		while(trav_next!=null){
-			sb.append(trav.key + " -> ");
-			trav = trav.next;
-			trav_next = trav_next.next;
-		}
+		for (int i = 0; i < size - 1; i++, trav = trav.next, trav_next = trav_next.next)
+			sb.append(trav.key + " <-> ");
 		return sb.append(trav.key + "]").toString();
 	}
 
@@ -170,21 +174,31 @@ public class SinglyLinkedList<T> implements Iterable<T>{
 	private class Node<T>{
 
 		Node<T> next;
+		Node<T> prev;
 		T key;
 
 		Node(){
 			next = null;
+			prev = null;
 			key = null;
 		}
 
-		Node(T key, Node<T> next){
+		Node(Node<T> prev, T key, Node<T> next){
 			this.key = key;
+			this.prev = prev;
 			this.next = next;
 		}
 
+		Node(T key, Node<T> next){
+			this(null, key, next);
+		}
+
+		Node(Node<T> prev, T key){
+			this(prev, key, null);
+		}
+
 		Node(T key){
-			this.key = key;
-			next = null;
+			this(null,key,null);
 		}
 
 	}
@@ -203,10 +217,10 @@ public class SinglyLinkedList<T> implements Iterable<T>{
     		node = head;
     	}
 
-    	@Override public boolean hasNext() {return node!=null;}
+    	@Override public boolean hasNext() {return index<size;}
 
     	@Override public T next() {
-    		if (node == null)
+    		if (index >= size)
     			throw new RuntimeException("Reached end of the list!");
     		T result = node.key;
     		node = node.next;

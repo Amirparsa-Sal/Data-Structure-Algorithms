@@ -1,3 +1,7 @@
+package DataStructures.DynamicArray;
+
+import DataStructures.DynamicArray.*;
+
 public class DriverClass{
 
 	public static void main(String[] args){

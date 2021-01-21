@@ -1,19 +1,21 @@
+package DataStructures.LinkedList;
+
 import java.util.Iterator;
 import java.lang.StringBuilder;
 
-public class DoublyLinkedList<T> implements Iterable<T>{
+public class SinglyLinkedList<T> implements Iterable<T>{
 
 	private int size;
 	private Node<T> head;
 	private Node<T> tail;
 
-	public DoublyLinkedList(){
+	public SinglyLinkedList(){
 		size = 0;
 		head = null;
 		tail = null;
 	}
 
-	public DoublyLinkedList(T key){
+	public SinglyLinkedList(T key){
 		this.size = 1;
 		head = tail = new Node<T>(key);
 	}
@@ -23,7 +25,7 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 	public boolean isEmpty(){return size==0;}
 
 	public void addLast(T key){
-		addLast(new Node<T>(tail, key));
+		addLast(new Node<T>(key));
 		++size;
 	}
 
@@ -37,7 +39,7 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 	}
 
 	public void addFirst(T key){
-		addFirst(new Node<T>(key, head));
+		addFirst(new Node<T>(key));
 		++size;
 	}
 
@@ -63,8 +65,7 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 		}
 		Node<T> trav = head;
 		for (int i = 0; i < index - 1; i++, trav = trav.next);
-		Node<T> newNode = new Node<>(trav,key,trav.next);
-		trav.next.prev = newNode;
+		Node<T> newNode = new Node<>(key,trav.next);
 		trav.next = newNode;
 		++size;	
 	}
@@ -102,7 +103,6 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 		}
 		Node<T> trav = head;
 		for(int i = 0; i < index - 1; i++, trav=trav.next);
-		trav.next.next.prev = trav;
 		trav.next = trav.next.next;
 		--size;
 		return true;
@@ -117,9 +117,12 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 			head = tail = null;
 			return key;
 		}
-		T key = tail.key;
-		tail  = tail.prev;
-		tail.next = null;
+		Node<T> trav = head;
+		while(trav.next!=null && trav.next.next!=null)
+			trav = trav.next;
+		T key = trav.next.key;
+		trav.next = null;
+		tail = trav;
 		--size;
 		return key;
 	}
@@ -135,7 +138,6 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 		}
 		T key = head.next.key;
 		head = head.next;
-		head.prev = null;
 		--size;
 		return key;
 	}
@@ -159,7 +161,7 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 		Node<T> trav = head;
 		Node<T> trav_next = head.next;
 		while(trav_next!=null){
-			sb.append(trav.key + " <-> ");
+			sb.append(trav.key + " -> ");
 			trav = trav.next;
 			trav_next = trav_next.next;
 		}
@@ -170,31 +172,21 @@ public class DoublyLinkedList<T> implements Iterable<T>{
 	private class Node<T>{
 
 		Node<T> next;
-		Node<T> prev;
 		T key;
 
 		Node(){
 			next = null;
-			prev = null;
 			key = null;
 		}
 
-		Node(Node<T> prev, T key, Node<T> next){
+		Node(T key, Node<T> next){
 			this.key = key;
-			this.prev = prev;
 			this.next = next;
 		}
 
-		Node(T key, Node<T> next){
-			this(null, key, next);
-		}
-
-		Node(Node<T> prev, T key){
-			this(prev, key, null);
-		}
-
 		Node(T key){
-			this(null,key,null);
+			this.key = key;
+			next = null;
 		}
 
 	}
