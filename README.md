@@ -35,23 +35,24 @@
   </ol>
 </details>
 <hr>
+
 # Compiling and running with JDK
 
 Run this commands from project root folder in terminal:
 
-## Compiling
+### Compiling
 
 ```
 javac -d classes -sourcepath src src/<Path to .java file>
 ```
 
-## Running
+### Running
 
 ```
 java -cp classes <class full hierarchy>
 ```
 
-## Example
+### Example
 
 ```
 javac -d classes -sourcepath src src/DataStructures/LinkedList/DriverClass.java
