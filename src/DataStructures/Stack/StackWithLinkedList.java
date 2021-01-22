@@ -25,10 +25,14 @@ public class StackWithLinkedList<T> implements Iterable<T>{
 	}
 
 	public T pop(){
+		if(isEmpty())
+			throw new RuntimeException("Stack is empty!");
 		return list.removeFirst();
 	}
 
 	public T peek(){
+		if(isEmpty())
+			throw new RuntimeException("Stack is empty!");
 		return list.peekFirst();
 	}
 
