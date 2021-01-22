@@ -26,13 +26,13 @@ public class QueueWithLinkedList<T> implements Iterable<T>{
 
 	public T deQueue(){
 		if(isEmpty())
-			throw new RuntimeException("Stack is empty!");
+			throw new RuntimeException("Queue is empty!");
 		return list.removeFirst();
 	}
 
 	public T peek(){
 		if(isEmpty())
-			throw new RuntimeException("Stack is empty!");
+			throw new RuntimeException("Queue is empty!");
 		return list.peekFirst();
 	}
 
