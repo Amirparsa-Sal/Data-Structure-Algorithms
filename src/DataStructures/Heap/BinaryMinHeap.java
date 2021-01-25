@@ -1,22 +1,38 @@
 package DataStructures.Heap;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class MinHeapDynamic<T extends Comparable<T>>{
+public class BinaryMinHeap<T extends Comparable<T>>{
 
 	private ArrayList<T> list;
 	private int size;
 
-	public MinHeapDynamic(int initialCapacity){
+	public BinaryMinHeap(int initialCapacity){
 		list = new ArrayList<>(initialCapacity);
 		size = 0;
 	}
 
-	public MinHeapDynamic(){
-		list = new ArrayList<>();
-		size = 0;
+	public BinaryMinHeap(){
+		this(1);
 	}
 
+	public BinaryMinHeap(T[] arr){
+		size = arr.length;
+		list = new ArrayList<>(size);
+		for(int i = 0; i < size; i++)
+			list.add(arr[i]);
+		for(int i = Math.max(0,size / 2 - 1); i >= 0; i--)
+			bubbleDown(i);
+	}
+
+	public BinaryMinHeap(Collection<T> arr){
+		size = arr.size();
+		list = new ArrayList<>(size);
+		list.addAll(arr);
+		for(int i = Math.max(0,size / 2 - 1); i >= 0; i--)
+			bubbleDown(i);
+	}
 
 	public boolean isMinHeap(){
 		return isMinHeap(0);
@@ -83,17 +99,11 @@ public class MinHeapDynamic<T extends Comparable<T>>{
 		return -1;
 	}
 
-	private int parentIndex(int index){
-		return index % 2 == 1? (index -1)/2 : (index -2)/2 ;
-	}
+	private int parentIndex(int index){return (index - 1) / 2;}
 
-	private int rightIndex(int index){
-		return 2 * index + 2;
-	}
+	private int rightIndex(int index){return 2 * index + 2;}
 
-	private int leftIndex(int index){
-		return 2 * index + 1;
-	}
+	private int leftIndex(int index){return 2 * index + 1;}
 
 	private T right(int index){
 		int right = rightIndex(index);
@@ -127,14 +137,9 @@ public class MinHeapDynamic<T extends Comparable<T>>{
 		return list.get(i).compareTo(list.get(j)) < 0;
 	}
 
-	private boolean lessEqual(int i, int j){
-		if (i >= size || j>=size)
-			return true;
-		return list.get(i).compareTo(list.get(j)) <= 0;
-	}
-
 	private void bubbleDown(int index){
-		while(index <= size/2 - 1){
+		int nonLeaf = size/2 - 1;
+		while(index <= nonLeaf){
 			int left = leftIndex(index);
 			int smallest = left;
 			int right = rightIndex(index);

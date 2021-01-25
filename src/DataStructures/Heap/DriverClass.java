@@ -5,7 +5,7 @@ import java.util.Random;
 public class DriverClass{
 
 	public static void main(String[] args) {
-		MinHeapDynamic<Integer> mhd = new MinHeapDynamic<>();
+		BinaryMinHeap<Integer> mhd = new BinaryMinHeap<>();
 		Random r = new Random();
 		for(int i = 0; i < 50; i++){
 			int x = r.nextInt(50);
