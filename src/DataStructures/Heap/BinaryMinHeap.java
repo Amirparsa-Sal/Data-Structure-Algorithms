@@ -9,6 +9,8 @@ public class BinaryMinHeap<T extends Comparable<T>>{
 	private int size;
 
 	public BinaryMinHeap(int initialCapacity){
+		if (initialCapacity == 0)
+			throw new IllegalArgumentException("Invalid size!");
 		list = new ArrayList<>(initialCapacity);
 		size = 0;
 	}
