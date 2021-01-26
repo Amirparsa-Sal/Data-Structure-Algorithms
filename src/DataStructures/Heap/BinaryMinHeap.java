@@ -70,7 +70,7 @@ public class BinaryMinHeap<T extends Comparable<T>>{
 		return removeAt(index);
 	}
 
-	public T removeAt(int index){
+	private T removeAt(int index){
 		if (index >= size)
 			throw new IndexOutOfBoundsException();
 		if (index == 0)
