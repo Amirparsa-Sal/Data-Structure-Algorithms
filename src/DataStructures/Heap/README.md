@@ -8,21 +8,7 @@ Binary Heap Tree has 2 types: Max Heap and Min Heap
 
 In a Min Heap, every parent node have a value which is smaller than their children and vice versa for a Max Heap.
 
-Heaps can be implemented using arrays. We can easily access the parent and children nodes using this equations:
-$$
-Parent_i = floor((i - 1)/2)
-$$
-
-$$
-Left_i = 2 * i + 1
-$$
-
-$$
-Right_i = 2 * i + 2
-$$
-
-Removing minimum element in Min Heap can be done in O(1) time complexity. while removing other elements can be done in O(n) complexity. We can optimize this process using a Hash Map and a Binary Search Tree to O(log n). You can see this optimization in `BinaryHeapOptimized.java` file.
-
+Heaps can be implemented using arrays. Removing smallest element in Min Heap can be done in O(1) time complexity. while removing other elements can be done in O(n) complexity. We can optimize this process using a Hash Map and a Binary Search Tree to O(log n). You can see this optimization in `BinaryHeapOptimized.java` file.
 ### Functions and Time Complexity
 
 |  Function  |            Description            | Binary Heap | Binary Heap Optimized |
@@ -31,5 +17,3 @@ Removing minimum element in Min Heap can be done in O(1) time complexity. while 
 |    Add     |   Adds an element to the Heap.    |  O(log n)   |       O(log n)        |
 |   Remove   | Removes an element from the Heap. |    O(n)     |       O(log n)        |
 |   Search   |  Searchs for an element in Heap.  |    O(n)     |         O(1)          |
-
-### 
