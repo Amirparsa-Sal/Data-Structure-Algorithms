@@ -1,40 +1,23 @@
 # Table of Contents
 
 <!-- Data Structure Contents -->
-<details open="open">
-  <summary>Data Structures</summary>
-  <ol>
-    <li>
-      <p>Dynamic Array</p>
-    </li>
-    <li>
-      <p>Linked List</p>
-      <ul>
-        <li><p>Simple Linked List</p></li>
-        <li><p>Doubly Linked List</p></li>
-        <li><p>Circular Linked List</p></li>
-      </ul>
-    </li>
-    <li><p>Stack</p></li>
-    <li><p>Queue</p></li>
-    <li>
-      <p>Trees</p>
-      <ul>
-        <li><p>Binary Search Tree</p></li>
-        <li><p>Heap Tree</p></li>
-        <li><p>Red Black Tree</p></li>
-        <li><p>Order Statistics Tree</p></li>
-        <li><p>Interval Tree</p></li>
-        <li><p>AVL Tree</p></li>
-        <li><p>B-Tree</p></li>
-        <li><p>R-Tree</p></li>
-      </ul>
-    </li>
-    <li><p>Hash Table</p></li>
-    <li><p>Graph</p></li>
-  </ol>
-</details>
-<hr>
+## [Data Structures](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures)
+* ### [Dynamic Array](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/DynamicArray)
+* ### [Linked List](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/LinkedList)
+* ### [Stack](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Stack)
+* ### [Queue](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Queue)
+* ### [Union Find(Disjoint Set)](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/UnionFind)
+* ### Hash Table
+* ### Trees
+  * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Heap)
+  * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/BinarySearchTree)
+  * #### Red Black Tree
+  * #### Order Statistics Tree
+  * #### Interval Tree
+  * #### AVL Tree
+  * #### B-Tree
+  * #### D-Tree
+* ### Graph
 
 # Compiling and running with JDK
 
