@@ -136,20 +136,6 @@ public class BinarySearchTree<T extends Comparable<T>>{
 		return trav;
 	}
 
-	public void traverse(){
-		if (size == 0)
-			return;
-		traverse(root);
-	}
-
-	private void traverse(Node node){
-		if (node == null)
-			return;
-		traverse(node.left);
-		System.out.println(node.key);
-		traverse(node.right);
-	}
-
 	public Iterator<T> inOrderIterator(){
 		Stack<Node> stack = new Stack<>();
 		if (size != 0)
@@ -161,11 +147,9 @@ public class BinarySearchTree<T extends Comparable<T>>{
 		}
 		return new Iterator<T>(){
 			
-
 			@Override public boolean hasNext(){return !stack.isEmpty();}
 
 			@Override public T next(){
-
 				Node next = stack.pop();
 				if (next.right != null){
 					stack.push(next.right);
@@ -175,8 +159,61 @@ public class BinarySearchTree<T extends Comparable<T>>{
 						node = node.left;
 					}
 				}
-
 				return next.key;
+			}
+
+			@Override public void remove(){
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
+
+	public Iterator<T> preOrderIterator(){
+		Stack<Node> stack = new Stack<>();
+		if (size != 0)
+			stack.push(root);
+
+		return new Iterator<T>(){
+			
+			@Override public boolean hasNext(){return !stack.isEmpty();}
+
+			@Override public T next(){
+				Node next = stack.pop();
+				if (next.right != null)
+					stack.push(next.right);
+				if(next.left != null)
+					stack.push(next.left);
+				return next.key;
+			}
+
+			@Override public void remove(){
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
+
+	public Iterator<T> postOrderIterator(){
+		Stack<Node> stack1 = new Stack<>();
+		Stack<Node> stack2 = new Stack<>();
+		if (size != 0)
+			stack1.push(root);
+		while(!stack1.isEmpty()){
+			Node node = stack1.pop();
+				if (node != null){
+				stack2.push(node);
+				if (node.left != null) 
+					stack1.push(node.left);
+				if (node.right != null)
+					stack1.push(node.right);
+			}
+		}
+
+		return new Iterator<T>(){
+			
+			@Override public boolean hasNext(){return !stack2.isEmpty();}
+
+			@Override public T next(){
+				return stack2.pop().key;
 			}
 
 			@Override public void remove(){
