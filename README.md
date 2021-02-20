@@ -3,20 +3,38 @@
 <!-- Data Structure Contents -->
 ## [Data Structures](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures)
 * ### [Dynamic Array](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/DynamicArray)
+
 * ### [Linked List](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/LinkedList)
+
 * ### [Stack](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Stack)
+
 * ### [Queue](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Queue)
+
 * ### [Union Find(Disjoint Set)](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/UnionFind)
+
 * ### Hash Table
+
+* [Sparse Table](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/SparseTable)
+
 * ### Trees
   * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Heap)
+  
+  * [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/FenwickTree)
+  
   * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/BinarySearchTree)
+  
   * #### Red Black Tree
+  
   * #### Order Statistics Tree
+  
   * #### Interval Tree
+  
   * #### AVL Tree
+  
   * #### B-Tree
+  
   * #### D-Tree
+  
 * ### Graph
 
 # Compiling and running with JDK
