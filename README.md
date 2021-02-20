@@ -14,12 +14,12 @@
 
 * ### Hash Table
 
-* [Sparse Table](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/SparseTable)
+* ### [Sparse Table](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/SparseTable)
 
 * ### Trees
   * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Heap)
   
-  * [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/FenwickTree)
+  * #### [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/FenwickTree)
   
   * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/BinarySearchTree)
   
