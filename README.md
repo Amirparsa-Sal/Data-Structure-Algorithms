@@ -1,27 +1,27 @@
 # Table of Contents
 
 <!-- Data Structure Contents -->
-## [Data Structures](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures)
-* ### [Dynamic Array](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/DynamicArray)
+## [Data Structures](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures)
+* ### [Dynamic Array](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/dynamicarray)
 
-* ### [Linked List](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/LinkedList)
+* ### [Linked List](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/linkedlist)
 
-* ### [Stack](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Stack)
+* ### [Stack](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/stack)
 
-* ### [Queue](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Queue)
+* ### [Queue](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/queue)
 
-* ### [Union Find(Disjoint Set)](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/UnionFind)
+* ### [Union Find(Disjoint Set)](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/unionfind)
 
 * ### Hash Table
 
-* ### [Sparse Table](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/SparseTable)
+* ### [Sparse Table](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/sparsetable)
 
-* ### Trees
-  * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/Heap)
+* ### [Trees](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees)
+  * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/heap)
   
-  * #### [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/FenwickTree)
+  * #### [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/fenwicktree)
   
-  * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/DataStructures/BinarySearchTree)
+  * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/binarysearchtree)
   
   * #### Red Black Tree
   
