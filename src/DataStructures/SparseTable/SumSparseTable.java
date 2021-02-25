@@ -2,9 +2,9 @@ package DataStructures.SparseTable;
 
 import DataStructure.SparseTable.SparseTable;
 
-public class MinSparseTable extends SparseTable{
-	
-	public MinSparseTable(long[] arr){
+public class SumSparseTable extends SparseTable{
+
+	public SumSparseTable(long[] arr){
 		super(arr);
 	}
 
@@ -16,21 +16,25 @@ public class MinSparseTable extends SparseTable{
 				int pow2 = pow2(i - 1);
 				long a = values[i-1][j];
 				long b = values[i-1][j + pow2];
-				values[i][j] = Math.min(a,b);
+				values[i][j] = a + b;
 			}
-
-			for(int j = n - pow2(i) + 1; j < n; j++)
-				values[i][j] = Integer.MAX_VALUE;
 		}
 	}
 
 	@Override
 	public long rangeQuery(int startInd, int endInd){
 		int len = endInd - startInd + 1;
-		int k = logs[len - 1];
-		long leftRangeValue = values[k][startInd];
-		long rightRangeValue = values[k][endInd - pow2(k) + 1];
-		return Math.min(leftRangeValue, rightRangeValue);
+		int row = logs[len - 1];
+		int col = startInd;
+		long sum = 0;
+		while(len > 0){
+			sum += values[row--][col];
+			col += pow2(logs[len - 1]);
+			len = len  - pow2(logs[len - 1]);
+		}
+		return sum;
 	}
 
 }
+
+// [1,6] = [2,1] + [1,5] 
