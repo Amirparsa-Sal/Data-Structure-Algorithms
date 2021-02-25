@@ -1,4 +1,4 @@
-package DataStructures.FenwickTree;
+package datastructures.trees.fenwicktree;
 
 import java.lang.StringBuilder;
 

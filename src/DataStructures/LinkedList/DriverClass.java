@@ -1,7 +1,6 @@
-package DataStructures.LinkedList;
+package datastructures.linkedlist;
 
 import java.util.Iterator;
-import DataStructures.LinkedList.*; 
 
 public class DriverClass{
 

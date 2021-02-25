@@ -1,8 +1,12 @@
+package datastructures.suffixarray;
+
 import java.util.concurrent.ThreadLocalRandom;
+import datastructures.suffixarray.SuffixHandlerFast;
 
 public class DriverClass{
 	public static void main(String[] args) {
-		SuffixHandlerFast shf = new SuffixHandlerFast("abcdabdcabd");
+		SuffixHandlerFast shf = new SuffixHandlerFast("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		shf.construct();
 		// int[] arr = new int[10000000];
 		// for(int i = 0; i < 10000000; i++)
 		// 	arr[i] = ThreadLocalRandom.current().nextInt(0, 10);
@@ -22,6 +26,8 @@ public class DriverClass{
 		// 	array[i] = i;
 		// time2=java.lang.System.currentTimeMillis();
 		// System.out.println(time2 - time1);
-		shf.printMap();
+		int[] suf = shf.getSuffixArray();
+		for(Integer i : suf)
+			System.out.println(i);
 	}
 }

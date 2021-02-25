@@ -1,4 +1,4 @@
-package DataStructures.Heap;
+package datastructures.heap;
 
 import java.util.Random;
 

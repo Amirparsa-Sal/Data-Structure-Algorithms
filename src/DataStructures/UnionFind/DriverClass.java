@@ -1,4 +1,6 @@
-package DataStructures.UnionFind;
+package datastructures.unionfind;
+
+import datastructures.unionfind.UnionFind;
 
 public class DriverClass{
 

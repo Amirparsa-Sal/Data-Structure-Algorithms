@@ -1,4 +1,4 @@
-package DataStructure.SparseTable;
+package datastructures.sparsetable;
 
 public abstract class SparseTable{
 	//values

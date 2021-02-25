@@ -1,4 +1,4 @@
-package DataStructures.UnionFind;
+package datastructures.unionfind;
 
 import java.lang.StringBuilder;
 

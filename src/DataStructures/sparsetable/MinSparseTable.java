@@ -1,6 +1,6 @@
-package DataStructures.SparseTable;
+package datastructures.sparsetable;
 
-import DataStructure.SparseTable.SparseTable;
+import datastructures.sparsetable.SparseTable;
 
 public class MinSparseTable extends SparseTable{
 	

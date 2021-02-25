@@ -1,4 +1,4 @@
-package DataStructures.BinarySearchTree;
+package datastructures.trees.binarysearchtree;
 
 import java.util.Iterator;
 import java.util.Stack;

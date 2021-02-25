@@ -1,4 +1,4 @@
-package DataStructures.SparseTable;
+package datastructures.sparsetable;
 
 public class DriverClass{
 	public static void main(String[] args) {

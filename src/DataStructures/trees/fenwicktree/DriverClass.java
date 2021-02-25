@@ -1,4 +1,6 @@
-package DataStructures.FenwickTree;
+package datastructures.trees.fenwicktree;
+
+import datastructures.trees.fenwicktree.FenwickTree;
 
 public class DriverClass{
 

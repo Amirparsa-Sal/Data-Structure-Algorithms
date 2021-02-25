@@ -1,4 +1,4 @@
-package DataStructures.Queue;
+package datastructures.queue;
 
 public class DriverClass{
 

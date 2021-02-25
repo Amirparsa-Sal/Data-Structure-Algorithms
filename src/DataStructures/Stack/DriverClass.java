@@ -1,4 +1,4 @@
-package DataStructures.Stack;
+package datastructures.stack;
 
 public class DriverClass{
 

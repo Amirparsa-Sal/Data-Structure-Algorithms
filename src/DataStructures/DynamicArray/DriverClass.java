@@ -1,4 +1,4 @@
-package DataStructures.DynamicArray;
+package datastructures.dynamicarray;
 
 import DataStructures.DynamicArray.*;
 

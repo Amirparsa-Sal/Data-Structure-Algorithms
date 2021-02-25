@@ -1,3 +1,5 @@
+package datastructures.suffixarray;
+
 import java.util.HashMap;
 
 public class SuffixHandlerFast{
@@ -13,14 +15,130 @@ public class SuffixHandlerFast{
 		suffixArray = new int[s.length()];
 		map = new HashMap<>();
 		createMap();
-		construct();
+	}
+
+	// m i s s i s s i p p i
+	// 0 1 2 3 4 5 6 7 8 9 10
+
+	// 1 4 7 10 2 5 8
+	// 0 1 2 3  4 5 6 
+
+	// 0 3 6 9
+	// 0 1 2 3
+
+	public int[] getSuffixArray(){
+		return suffixArray;
 	}
 
 	public void construct(){
+		int size = s.length();
+		//build SA12
 		Suffix[] SA12 = buildSA12();
-		System.out.println("----------------------------");
-		for(Suffix s : SA12)
+		for (Suffix s : SA12)
 			System.out.println(s);
+		int size12 = SA12.length;
+		int[] rank12 = new int[size12];
+		int[] SA1 = new int[(size + 1) / 3];
+		int ind = 0;
+		for(int i = 0; i < size12; i++){
+			rank12[indexToindex12(SA12[i].index, size12, false)] = i;
+			if (SA12[i].index % 3 == 1)
+				SA1[ind++] = SA12[i].index;
+		}
+		System.out.println();
+		for (Integer i : rank12)
+			System.out.println(i);
+
+		System.out.println();
+		for (Integer i : SA1)
+			System.out.println(i);
+		//build SA0
+		int size0 = (size+ 2) / 3;
+		Suffix[] SA0 = new Suffix[size0];
+		int [] SA0Ranks = new int[size0];
+		for(int i = 0; i < size0 - 1; i++){
+			Suffix suf = new Suffix((SA1[i] - 1));
+			SA0[i] = suf;
+			SA0Ranks[i] = suf.ranks[0]; 
+		}
+		//handling last SA0 element
+		if (size % 3 == 1){
+			for(int i = size0 - 1; i >= 1; i--){
+				SA0[i] = SA0[i - 1];
+				SA0Ranks[i] = SA0Ranks[i - 1];
+			}
+			Suffix suf = new Suffix(size - 1);
+			SA0[0] = suf;
+			SA0Ranks[0] = suf.ranks[0];
+		}
+		else{
+			int index = size0 - 1;
+			Suffix suf = new Suffix((SA1[index] - 1));
+			SA0[index] = suf;
+			SA0Ranks[index] = suf.ranks[0];
+		}
+
+		int[] sortedRanks = radixSort(SA0Ranks);
+		SA0 = updateOrders(sortedRanks, SA0);
+		
+		System.out.println("SA0");
+		for (Suffix s : SA0)
+			System.out.println(s);
+		System.out.println();
+		// 9 -> 3 10 -> 4 11 -> 4 12 -> 4
+
+		suffixArray = new int[size];
+		int index0 = 0;
+		int index12 = 0;
+		int index = 0;
+		while(index0 < size0 && index12 < size12){
+			if (mergeChecking(SA12[index12].index, SA0[index0].index, rank12))
+				suffixArray[index++] = SA12[index12++].index;
+			else
+				suffixArray[index++] = SA0[index0++].index;
+		}
+		if (index12 == size12)
+			for(int i = index0; i < size0; i++)
+				suffixArray[index++] = SA0[i].index;
+		else
+			for(int i = index12; i < size12; i++)
+				suffixArray[index++] = SA12[i].index;
+	}
+
+	//checks if i less than j
+	// j mod 3 = 0;
+	// i mod 3 = 1 or 2;
+	private boolean mergeChecking(int i, int j, int[] SA12Ranks){
+		int size = s.length();
+		int size12 = size * 2 / 3;
+		int i12 = indexToindex12(i, size12, false);
+		int orderI = map.get(getCharAt(i));
+		int orderJ = map.get(getCharAt(j));
+		if (i % 3 == 1){
+			if(orderI > orderJ)
+				return false;
+			if(orderI < orderJ)
+				return true;
+			int rankI = i == size - 1 ? 0 : SA12Ranks[indexToindex12(i + 1,size12,false)];
+			int rankJ = j == size - 1 ? 0 : SA12Ranks[indexToindex12(j + 1,size12,false)];
+			return rankI <= rankJ;
+		}
+		if (i % 3 == 2){
+			if(orderI > orderJ)
+				return false;
+			if(orderI < orderJ)
+				return true;
+			int orderII = map.get(getCharAt(i + 1));
+			int orderJJ = map.get(getCharAt(j + 1));
+			if(orderII > orderJJ)
+				return false;
+			if(orderII < orderJJ)
+				return true;
+			int rankI = i >= size - 2 ? 0 : SA12Ranks[indexToindex12(i + 2,size12,false)];
+			int rankJ = j >= size - 2 ? 0 : SA12Ranks[indexToindex12(j + 2,size12,false)];
+			return rankI <= rankJ;
+		}
+		return false;
 	}
 
 	private Suffix[] buildSA12(){
@@ -47,20 +165,24 @@ public class SuffixHandlerFast{
 				order++;
 			lexOrders[i] = order;
 		}
+
+		for(Suffix s : SA12)
+			System.out.println(s);
+		System.out.println("----------------");
 		//try recursion if has duplicates
 		if (order < size){
 			char[] augmentedRanks = new char[size + 1];
 			for(int i = 0; i < size; i++){
 				index = SA12[i].index;
-				if (index % 3 == 1)
-					augmentedRanks[(index - 1) / 3] = (char)(lexOrders[i] + '0');
-				else
-					augmentedRanks[(size + 1) / 2 + (index - 2) / 3 + 1] = (char)(lexOrders[i] + '0');
+				augmentedRanks[indexToindex12(index, size, true)] = (char)(lexOrders[i] + '0');
 			}
 			augmentedRanks[(size + 1) / 2] = '#';
 			System.out.println(new String(augmentedRanks));
 			SuffixHandlerFast shf = new SuffixHandlerFast(new String(augmentedRanks));
 			Suffix[] suffixes = shf.getAllSuffixes();
+			for(Suffix s : suffixes)
+			System.out.println(s);
+			System.out.println("----------------");
 			suffixes = sortSuffixes(suffixes);
 			SA12 = new Suffix[size];
 			for(int i = 0; i < size; i++)
@@ -69,10 +191,21 @@ public class SuffixHandlerFast{
 		return SA12;
 	}
 
+	// m i s s i s s i p p i
+	// 0 1 2 3 4 5 6 7 8 9 10
+
+	// 1 4 7 10 2 5 8
+	// 0 1 2 3  4 5 6 
 	private int index12Toindex(int i, int size){
 		if (i < (size + 1) / 2)
 			return 3 * i + 1;
 		return (i - 1 - (size+1) /2) * 3 + 2; 
+	} 
+
+	private int indexToindex12(int i, int size, boolean hasHashSign){
+		if (i % 3 == 1)
+			return (i - 1) / 3;
+		return hasHashSign ? (size + 1) / 2 + (i - 2) / 3 + 1 : (size + 1) / 2 + (i - 2) / 3; 
 	} 
 
 	private Suffix[] sortSuffixes(Suffix[] suffixes){
@@ -82,13 +215,18 @@ public class SuffixHandlerFast{
 			int[] ranks = new int[size];
 			for(int i = 0; i < size; i++)
 				ranks[i] = suffixes[i].ranks[j];
-			indexes = radixSort(ranks);
-			Suffix[] newSuffixes = new Suffix[size];
-			for(int i = 0; i < size; i++)
-				newSuffixes[i] = suffixes[indexes[i]];
-			suffixes = newSuffixes;
+			indexes = radixSort(ranks);;
+			suffixes = updateOrders(indexes, suffixes);
 		}	
 		return suffixes;
+	}
+
+	private Suffix[] updateOrders(int[] sortedIndexes, Suffix[] suffixes){
+		int size = suffixes.length;
+		Suffix[] newSuffixes = new Suffix[size];
+		for(int i = 0; i < size; i++)
+			newSuffixes[i] = suffixes[sortedIndexes[i]];
+		return newSuffixes;
 	}
 
 	private Suffix[] getAllSuffixes(){
