@@ -19,9 +19,9 @@
 * ### [Trees](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees)
   * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/heap)
   
-  * #### [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/fenwicktree)
+  * #### [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees/fenwicktree)
   
-  * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/binarysearchtree)
+  * #### [Binary Search Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees/binarysearchtree)
   
   * #### Red Black Tree
   
