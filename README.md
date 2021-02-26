@@ -17,7 +17,7 @@
 * ### [Sparse Table](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/sparsetable)
 
 * ### [Trees](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees)
-  * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/heap)
+  * #### [Heap Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees/heap)
   
   * #### [Fenwick Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees/fenwicktree)
   
@@ -29,7 +29,7 @@
   
   * #### Interval Tree
   
-  * #### AVL Tree
+  * #### [AVL Tree](https://github.com/Amirparsa-Sal/Data-Structure-Algorithms/tree/master/src/datastructures/trees/avltree)
   
   * #### B-Tree
   
