@@ -16,5 +16,11 @@ public class DriverClass{
 		tree.insert(11);
 		tree.insert(12);
 		tree.inOrderTraversal();
+		tree.remove(5);
+		tree.remove(10);
+		tree.remove(9);
+		tree.remove(12);
+		tree.remove(4);
+		tree.inOrderTraversal();
 	}
 }

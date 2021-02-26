@@ -20,7 +20,7 @@ public class AVLTree<T extends Comparable<T>>{
 		size = 1;
 	}
 
-	private boolean less(T key1, T key2){return key1.compareTo(key2) <= 0;} 
+	private boolean less(T key1, T key2){return key1.compareTo(key2) < 0;} 
 
 	private Node find(T key){
 		if (key == null)
@@ -34,6 +34,10 @@ public class AVLTree<T extends Comparable<T>>{
 		}
 		return node;
 	} 
+
+	public boolean contains(T key){
+		return find(key) != null;
+	}
 
 	private void leftRotate(Node node){
 		Node parent = node.parent;
@@ -110,6 +114,86 @@ public class AVLTree<T extends Comparable<T>>{
 		updateFactor(node);
 		if(node.factor == -2 || node.factor == 2)
 			balance(node);
+	}
+
+	public boolean remove(T key){
+		if (key == null || root == null)
+			return false;
+		if (contains(key)){
+			remove(root,key);
+			return true;
+		}
+		return false;
+	}
+
+	private void remove(Node node, T key){
+		if (less(key,node.key))
+			remove(node.left, key);
+		else if(node.key.equals(key)){
+			if (node.left == null)
+				transplant(node, node.right);
+			else if (node.right == null)
+				transplant(node, node.left);
+			else{
+				Node suc = min(node.right);
+				node.key = suc.key;
+				remove(node.right,suc.key);
+			}
+		}
+		else{
+			remove(node.right, key);
+		}
+		updateFactor(node);
+		balance(node);
+	}
+
+	private void transplant(Node node, Node replace){
+		Node parent = node.parent;
+		if (parent == null){
+			root = replace;
+		}
+		else if(parent.left == node)
+			parent.left = replace;
+		else
+			parent.right = replace;
+		if (replace != null)
+			replace.parent = parent;
+	}
+
+	private Node successor(Node node){
+		if (node.right != null)
+			return min(node.right);
+		Node parent = node.parent, trav = node;
+		while (parent != null && trav == trav.parent.right){
+			parent = parent.parent;
+			node = node.parent;
+		}
+		return parent;
+	}
+
+	private Node predecessor(Node node){
+		if (node.left != null)
+			return max(node.left);
+		Node parent = node.parent, trav = node;
+		while (parent != null && trav == trav.parent.left){
+			parent = parent.parent;
+			node = node.parent;
+		}
+		return parent;
+	}
+
+	private Node min(Node node){
+		Node trav = node;
+		while(trav.left != null)
+			trav = trav.left;
+		return trav;
+	}
+
+	private Node max(Node node){
+		Node trav = node;
+		while(trav.right != null)
+			trav = trav.right;
+		return trav;
 	}
 
 	private void updateFactor(Node node){
